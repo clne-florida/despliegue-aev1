@@ -1,0 +1,15 @@
+:root {
+    --main-clr: #be54d1;
+    --txt-clr: #8c8c8c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  color: var(--txt-clr);
+  padding: 20px;
+}
