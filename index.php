@@ -38,14 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['letra'])) {
 
 // Comprobar si se ha ganado o perdido
 if ($_SESSION['letras_acertadas'] == $_SESSION['palabra']) {
-    echo "¡Enhorabuena! Has ganado :) La palabra era: " . $_SESSION['palabra'] . "<br>";
-    session_destroy();
-    echo '<a href="">Jugar de nuevo</a>';
+    header('Location: victoria.php');
     exit();
 } elseif ($_SESSION['vidas'] <= 0) {
-    echo "Lo siento, has perdido :( La palabra era: " . $_SESSION['palabra'] . "<br>";
-    session_destroy();
-    echo '<a href="">Jugar de nuevo</a>';
+    header('Location: derrota.php');
     exit();
 }
 ?>
@@ -55,6 +51,7 @@ if ($_SESSION['letras_acertadas'] == $_SESSION['palabra']) {
 <head>
     <meta charset="UTF-8">
     <title>Ahorcado</title>
+    <link rel="stylesheet" href="common.css">
 </head>
 <body>
     <h1>Juego del Ahorcado</h1>
@@ -62,7 +59,7 @@ if ($_SESSION['letras_acertadas'] == $_SESSION['palabra']) {
     <p>Vidas restantes: <?php echo $_SESSION['vidas']; ?></p>
     <form method="post">
         <label for="letra">Introduce una letra:</label>
-        <input type="text" name="letra" id="letra" maxlength="1" required>
+        <input type="text" name="letra" id="letra" maxlength="1" required autofocus>
         <button type="submit">Adivinar</button>
     </form>
     <p>Letras usadas: <?php echo implode(', ', $_SESSION['letras_usadas']); ?></p>
